@@ -9,4 +9,5 @@
     <string name="line_park">线路</string>
     <string name="personal_center">个人中心</string>
     <string name="park_master">停车大师</string>
+    <string name="park">停车</string>
 </resources>

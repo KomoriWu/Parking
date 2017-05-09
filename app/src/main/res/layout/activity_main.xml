@@ -18,33 +18,49 @@
         android:layout_above="@+id/radio_group"
         android:layout_below="@+id/layout_appbar" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_below="@+id/frame_content"
+        android:background="@color/medium_gray" />
+
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/bg_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/rb_padding"
+        android:paddingTop="@dimen/rb_padding">
 
         <RadioButton
             android:id="@+id/rb_near"
             style="@style/main_rb"
+            android:drawableTop="@drawable/rb_near_icon"
             android:text="@string/near" />
 
         <RadioButton
+            android:id="@+id/rb_query"
             style="@style/main_rb"
+            android:drawableTop="@drawable/rb_query_icon"
             android:text="@string/query" />
 
         <RadioButton
+            android:id="@+id/rb_add"
             style="@style/main_rb"
-            android:text="@string/add" />
+            android:drawableTop="@drawable/rb_add_icon"
+            android:text="@string/park" />
 
         <RadioButton
+            android:id="@+id/rb_message"
             style="@style/main_rb"
+            android:drawableTop="@drawable/rb_message_icon"
             android:text="@string/message" />
 
         <RadioButton
+            android:id="@+id/rb_my"
             style="@style/main_rb"
+            android:drawableTop="@drawable/rb_my_icon"
             android:text="@string/my" />
     </RadioGroup>
 </RelativeLayout>

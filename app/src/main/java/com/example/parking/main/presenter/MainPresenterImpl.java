@@ -19,19 +19,19 @@ public class MainPresenterImpl implements MainPresenter {
     @Override
     public void switchNavigation(int id) {
         switch (id) {
-            case 0:
+            case R.id.rb_near:
                 mMainView.switchNear();
                 break;
-            case 1:
+            case R.id.rb_query:
                 mMainView.switchQuery();
                 break;
-            case 2:
+            case R.id.rb_add:
                 mMainView.switchAdd();
                 break;
-            case 3:
+            case R.id.rb_message:
                 mMainView.switchMessage();
                 break;
-            case 4:
+            case R.id.rb_my:
                 mMainView.switchMy();
                 break;
         }

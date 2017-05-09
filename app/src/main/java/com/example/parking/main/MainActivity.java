@@ -42,12 +42,12 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         initToolbar();
         mMainPresenter = new MainPresenterImpl(this);
         radioGroup.setOnCheckedChangeListener(this);
-        radioGroup.check(R.id.rb_near);
+        radioGroup.check(R.id.rb_add);
     }
 
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
-        mMainPresenter.switchNavigation(i);
+        mMainPresenter.switchNavigation(radioGroup.getCheckedRadioButtonId());
     }
 
     @Override

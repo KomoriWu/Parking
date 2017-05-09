@@ -21,8 +21,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">@dimen/main_text_size</item>
-        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textSize">@dimen/mini_text_size</item>
+        <item name="android:textColor">@drawable/rb_text_color</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:drawablePadding">@dimen/rb_padding</item>
     </style>
 </resources>
