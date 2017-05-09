@@ -67,18 +67,11 @@ public class AddFragment extends BaseFragment implements MapManager.onMapListene
         mapManager.onDestroy();
     }
 
-    @Override
-    public void startSearch() {
-
-    }
 
     @Override
     public void searchSucceed(PoiItem poiItem) {
         mapManager.addMarker(poiItem);
     }
 
-    @Override
-    public void searchFailed() {
 
-    }
 }

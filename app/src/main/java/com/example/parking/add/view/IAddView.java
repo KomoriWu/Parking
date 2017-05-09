@@ -11,9 +11,7 @@ import com.amap.api.services.core.PoiItem;
  */
 
 public interface IAddView {
-    void startSearch();
 
     void searchSucceed(PoiItem poiItem);
 
-    void searchFailed();
 }
