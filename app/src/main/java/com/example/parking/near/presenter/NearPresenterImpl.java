@@ -22,8 +22,8 @@ public class NearPresenterImpl implements NearPresenter {
     }
 
     @Override
-    public void loadParkData(String filterType, String sortType) {
-        mNearModel.loadParkData(filterType, sortType, new NearModelImpl.OnLoadListener() {
+    public void loadParkData(int page, int size, String filterType, String sortType) {
+        mNearModel.loadParkData(page, size, filterType, sortType, new NearModelImpl.OnLoadListener() {
             @Override
             public void showProgress() {
                 mNearView.showProgress();
@@ -31,6 +31,7 @@ public class NearPresenterImpl implements NearPresenter {
 
             @Override
             public void success(List<Parking> parkingList) {
+                mNearView.hideProgress();
                 mNearView.showParkData(parkingList);
             }
         });

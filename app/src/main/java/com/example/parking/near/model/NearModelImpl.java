@@ -14,8 +14,9 @@ import java.util.List;
 public class NearModelImpl implements NearModel {
 
     @Override
-    public void loadParkData(final String filterType, final String sortType,
-                             final OnLoadListener onLoadListener) {
+    public void loadParkData(final int page, final int size, final String filterType,
+                             final String sortType, final OnLoadListener onLoadListener) {
+
         new AsyncTask<Void, Void, List<Parking>>() {
             @Override
             protected void onPreExecute() {
@@ -24,7 +25,13 @@ public class NearModelImpl implements NearModel {
 
             @Override
             protected List<Parking> doInBackground(Void... voids) {
-                List<Parking> parkingArrayList = Parking.getParkingList(filterType, sortType);
+                List<Parking> parkingArrayList= Parking.getParkingList(page, size, filterType,
+                        sortType);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 return parkingArrayList;
             }
 

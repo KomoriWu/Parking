@@ -6,5 +6,5 @@ package com.example.parking.near.presenter;
  */
 
 public interface NearPresenter {
-    void loadParkData(String filterType, String sortType);
+    void loadParkData(int page, int size, String filterType, String sortType);
 }

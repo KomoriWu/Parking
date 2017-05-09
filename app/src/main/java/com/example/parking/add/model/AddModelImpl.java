@@ -31,7 +31,7 @@ public class AddModelImpl implements IAddModel, PoiSearch.OnPoiSearchListener {
     public void startSearch(Context context, OnParkSearchListener listener, LatLonPoint latLonPoint) {
         this.mParkListener = listener;
         mQuery = new PoiSearch.Query(Utils.TEXT_POI_KEY, Utils.TEXT_POI_TYPE);
-        mQuery.setPageSize(30);// 设置每页最多返回多少条poiitem
+        mQuery.setPageSize(Utils.POI_SEARCH_COUNT);// 设置每页最多返回多少条poiitem
         mQuery.setPageNum(1);//设置查询页码
         mPoiSearch = new PoiSearch(context, mQuery);
         mPoiSearch.setBound(new PoiSearch.SearchBound(latLonPoint, Utils.POI_SEARCH_BOUND));

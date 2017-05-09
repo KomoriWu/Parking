@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.annotations.Until;
 import com.orm.SugarRecord;
 import com.orm.dsl.Table;
+import com.orm.util.NamingHelper;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -103,9 +104,16 @@ public class Parking extends SugarRecord implements Serializable {
     }
 
 
-    public static List<Parking> getParkingList(String filterType, String sortType) {
+    public static List<Parking> getParkingList(int page, int size, String filterType,
+                                               String sortType) {
+        int index = (page - 1) * size;
 //        List<Parking> parkingList = Parking.find(Parking.class, "filter_type = ?", filterType);
-        List<Parking> parkingList = Parking.listAll(Parking.class);
+//        List<Parking> parkingList = Parking.find(Parking.class, null, null, null, null,
+//                "limit ?,?", index + "", size + "");
+        //分页
+        List<Parking> parkingList = findWithQuery(Parking.class,
+                "SELECT * FROM " + NamingHelper.toSQLName(Parking.class) +
+                        " LIMIT " + index + "," + size + "");
         return parkingList;
     }
 }

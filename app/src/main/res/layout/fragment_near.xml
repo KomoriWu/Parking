@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/layout_park"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -44,8 +45,8 @@
             android:dropDownVerticalOffset="@dimen/spinner_drop_down_v" />
     </LinearLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout"
+    <com.example.parking.refresh.RefreshLayout
+        android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_below="@+id/layout_spinner"
         android:layout_height="match_parent">
@@ -55,5 +56,5 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/layout_spinner" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </com.example.parking.refresh.RefreshLayout>
 </RelativeLayout>
