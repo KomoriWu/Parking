@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.parking.near.ParkActivity">
+
+    <include
+        android:id="@+id/layout_appbar"
+        layout="@layout/toolbar" />
+
+    <ImageView
+        android:id="@+id/iv_park_img"
+        android:layout_width="@dimen/park_iv"
+        android:layout_height="@dimen/park_iv"
+        android:layout_below="@+id/layout_appbar"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_park_space"
+        style="@style/main_tv"
+        android:layout_below="@+id/iv_park_img"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="@string/park_space" />
+
+    <TextView
+        android:id="@+id/tv_park_price"
+        style="@style/main_tv"
+        android:layout_below="@+id/tv_park_space"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="@string/park_price" />
+
+    <TextView
+        android:id="@+id/tv_park_phone_number"
+        style="@style/main_tv"
+        android:layout_below="@+id/tv_park_price"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="@string/park_phone_number" />
+
+    <TextView
+        android:id="@+id/tv_park_address"
+        style="@style/main_tv"
+        android:layout_below="@+id/tv_park_phone_number"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="@string/park_address" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_reserve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/item_padding_left"
+        android:src="@mipmap/icon_fab_reserve"
+        android:layout_alignParentRight="true" />
+</RelativeLayout>

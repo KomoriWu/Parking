@@ -57,6 +57,12 @@ public abstract class BaseActivity extends AppCompatActivity {
             if (actionBar != null &&isShowBackBar) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setDisplayShowTitleEnabled(false);
+                toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        onBackPressed();
+                    }
+                });
             }
             setTitle("");
         }

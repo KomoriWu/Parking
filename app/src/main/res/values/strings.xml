@@ -9,4 +9,8 @@
     <string name="personal_center">个人中心</string>
     <string name="park_master">停车大师</string>
     <string name="park">停车</string>
+    <string name="park_space">空余车位数： %s </string>
+    <string name="park_price">价格： %s 元/小时</string>
+    <string name="park_phone_number">电话：%s</string>
+    <string name="park_address">地址：%s</string>
 </resources>

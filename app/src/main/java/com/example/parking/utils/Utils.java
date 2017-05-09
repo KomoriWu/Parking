@@ -8,4 +8,5 @@ package com.example.parking.utils;
 public class Utils {
     public static final String DISTANCE_MIN="distance_min";
     public static final String DISTANCE_MAX="distance_max";
+    public static final String PARKING="parking";
 }

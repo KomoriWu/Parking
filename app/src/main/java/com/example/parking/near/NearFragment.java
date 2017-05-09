@@ -1,5 +1,6 @@
 package com.example.parking.near;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -16,6 +17,7 @@ import com.example.parking.bean.Parking;
 import com.example.parking.near.presenter.NearPresenter;
 import com.example.parking.near.presenter.NearPresenterImpl;
 import com.example.parking.near.view.NearView;
+import com.example.parking.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,6 +105,7 @@ public class NearFragment extends BaseFragment implements NearView, NearAdapter.
 
     @Override
     public void showParkData(final List<Parking> parkingList) {
+        mParkingList = parkingList;
         swipeRefreshLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -114,7 +117,9 @@ public class NearFragment extends BaseFragment implements NearView, NearAdapter.
 
     @Override
     public void onItemClick(View view, int position) {
-
+        Intent intent = new Intent(getActivity(), ParkActivity.class);
+        intent.putExtra(Utils.PARKING, mParkingList.get(position));
+        startActivity(intent);
     }
 
     //下拉刷新
