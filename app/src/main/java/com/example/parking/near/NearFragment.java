@@ -1,6 +1,7 @@
 package com.example.parking.near;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import android.widget.Spinner;
 import com.example.parking.R;
 import com.example.parking.base.BaseFragment;
 import com.example.parking.bean.Parking;
+import com.example.parking.near.presenter.NearPresenter;
+import com.example.parking.near.presenter.NearPresenterImpl;
 import com.example.parking.near.view.NearView;
 
 import java.util.ArrayList;
@@ -27,7 +30,7 @@ import butterknife.ButterKnife;
 
 
 public class NearFragment extends BaseFragment implements NearView, NearAdapter.
-        OnItemClickListener {
+        OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.spinner_default)
     Spinner spinnerDefault;
@@ -37,11 +40,14 @@ public class NearFragment extends BaseFragment implements NearView, NearAdapter.
     Spinner spinnerPrice;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
     private String[] mDefaults;
     private String[] mDistances;
     private String[] mPrices;
     private NearAdapter mNearAdapter;
     private List<Parking> mParkingList;
+    private NearPresenter mNearPresenter;
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +55,8 @@ public class NearFragment extends BaseFragment implements NearView, NearAdapter.
         ButterKnife.bind(this, view);
         initSpinner();
         initRecycleView();
+        mNearPresenter = new NearPresenterImpl(this);
+        mNearPresenter.loadParkData("", "");
         return view;
     }
 
@@ -77,16 +85,46 @@ public class NearFragment extends BaseFragment implements NearView, NearAdapter.
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mNearAdapter = new NearAdapter(getActivity(), this);
         recyclerView.setAdapter(mNearAdapter);
+        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setColorScheme(R.color.colorPrimary, R.color.colorAccent);
+
         mParkingList = new ArrayList<>();
     }
 
     @Override
-    public void showParkData(List<Parking> parkingList) {
-        mNearAdapter.setMusicList(parkingList);
+    public void showProgress() {
+        swipeRefreshLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefreshLayout.setRefreshing(true);
+            }
+        });
+    }
+
+    @Override
+    public void showParkData(final List<Parking> parkingList) {
+        swipeRefreshLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefreshLayout.setRefreshing(false);
+                mNearAdapter.setParkList(parkingList);
+            }
+        }, 1000);
     }
 
     @Override
     public void onItemClick(View view, int position) {
 
+    }
+
+    //下拉刷新
+    @Override
+    public void onRefresh() {
+        swipeRefreshLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        }, 1500);
     }
 }

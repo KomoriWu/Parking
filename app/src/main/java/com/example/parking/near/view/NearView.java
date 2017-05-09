@@ -10,5 +10,6 @@ import java.util.List;
  */
 
 public interface NearView {
+   void showProgress();
     void showParkData(List<Parking> parkingList);
 }

@@ -33,7 +33,7 @@ public class NearAdapter extends RecyclerView.Adapter<NearAdapter.ParkViewHolder
         this.mOnItemClickListener = mOnItemClickListener;
     }
 
-    public void setMusicList(List<Parking> mParkingList) {
+    public void setParkList(List<Parking> mParkingList) {
         this.mParkingList = mParkingList;
         notifyDataSetChanged();
     }
@@ -51,12 +51,14 @@ public class NearAdapter extends RecyclerView.Adapter<NearAdapter.ParkViewHolder
 
     @Override
     public void onBindViewHolder(ParkViewHolder holder, int position) {
-
+        Parking parking = mParkingList.get(position);
+        holder.tvName.setText(parking.getName());
+        holder.tvAddress.setText(parking.getAddress());
     }
 
     @Override
     public int getItemCount() {
-        return 8;
+        return mParkingList == null ? 0 : mParkingList.size();
     }
 
     public class ParkViewHolder extends RecyclerView.ViewHolder implements View.

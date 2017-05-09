@@ -7,6 +7,7 @@ import com.example.parking.near.model.NearModel;
 import com.example.parking.near.model.NearModelImpl;
 import com.example.parking.near.view.NearView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,6 +27,10 @@ public class NearPresenterImpl implements NearPresenter {
     @Override
     public void loadParkData(final String filterType, final String sortType) {
         new AsyncTask<Void, Void, List<Parking>>() {
+            @Override
+            protected void onPreExecute() {
+                mNearView.showProgress();
+            }
 
             @Override
             protected List<Parking> doInBackground(Void... voids) {
@@ -33,9 +38,15 @@ public class NearPresenterImpl implements NearPresenter {
             }
 
             @Override
-            protected void onCancelled(List<Parking> parkingList) {
+            protected void onPostExecute(List<Parking> parkingList) {
+                parkingList = new ArrayList<>();
+                Parking parking = new Parking();
+                parking.setAddress("地址");
+                parking.setName("停车场");
+                parkingList.add(parking);
                 mNearView.showParkData(parkingList);
             }
+
         }.execute();
     }
 }
