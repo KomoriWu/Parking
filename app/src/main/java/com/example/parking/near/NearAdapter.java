@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.parking.R;
 import com.example.parking.bean.Parking;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -31,11 +32,22 @@ public class NearAdapter extends RecyclerView.Adapter<NearAdapter.ParkViewHolder
     public NearAdapter(Context mContext, OnItemClickListener mOnItemClickListener) {
         this.mContext = mContext;
         this.mOnItemClickListener = mOnItemClickListener;
+        mParkingList = new ArrayList<>();
     }
 
-    public void setParkList(List<Parking> mParkingList) {
-        this.mParkingList = mParkingList;
-        notifyDataSetChanged();
+//    public void setParkList(List<Parking> mParkingList) {
+//        this.mParkingList = mParkingList;
+//        notifyDataSetChanged();
+//    }
+
+    public void addParkList(List<Parking> parkingList, boolean isClearList) {
+        if (parkingList != null) {
+            if (isClearList) {
+                mParkingList.clear();
+            }
+            mParkingList.addAll(parkingList);
+            notifyDataSetChanged();
+        }
     }
 
     public interface OnItemClickListener {

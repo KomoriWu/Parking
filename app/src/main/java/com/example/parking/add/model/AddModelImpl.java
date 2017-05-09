@@ -7,6 +7,7 @@ import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
+import com.example.parking.bean.Parking;
 import com.example.parking.utils.Utils;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class AddModelImpl implements IAddModel, PoiSearch.OnPoiSearchListener {
     public void startSearch(Context context, OnParkSearchListener listener, LatLonPoint latLonPoint) {
         this.mParkListener = listener;
         mQuery = new PoiSearch.Query(Utils.TEXT_POI_KEY, Utils.TEXT_POI_TYPE);
-        mQuery.setPageSize(10);// 设置每页最多返回多少条poiitem
+        mQuery.setPageSize(Utils.POI_SEARCH_COUNT);// 设置每页最多返回多少条poiitem
         mQuery.setPageNum(1);//设置查询页码
         mPoiSearch = new PoiSearch(context, mQuery);
         mPoiSearch.setBound(new PoiSearch.SearchBound(latLonPoint, Utils.POI_SEARCH_BOUND));
@@ -41,9 +42,32 @@ public class AddModelImpl implements IAddModel, PoiSearch.OnPoiSearchListener {
     @Override
     public void onPoiSearched(PoiResult poiResult, int i) {
         ArrayList<PoiItem> queryItems = poiResult.getPois();
+        //删掉旧数据
+        Parking.deleteAll(Parking.class);
         for (int j = 0; j < queryItems.size(); j++) {
+            PoiItem poiItem = queryItems.get(j);
             mParkListener.parkSearchSucceed(queryItems.get(j));
+            //sql save
+            savePark(poiItem);
         }
+
+
+    }
+
+    private void savePark(PoiItem poiItem) {
+        Parking parking = new Parking();
+        parking.setAddress(poiItem.getCityName() + poiItem.getAdName() + poiItem.getSnippet());
+        parking.setName(poiItem.getTitle());
+        parking.setDistance(poiItem.getDistance());
+        if (poiItem.getDistance() < 1000) {
+            parking.setFilterType("1");
+        } else if (poiItem.getDistance() < 5000) {
+            parking.setFilterType("2");
+        } else {
+            parking.setFilterType("3");
+        }
+
+        parking.save();
     }
 
     @Override
