@@ -11,4 +11,6 @@
     <dimen name="mini_text_size">12sp</dimen>
     <dimen name="item_padding_left">24dp</dimen>
     <dimen name="divide_padding_right">32dp</dimen>
+    <dimen name="spinner_drop_down_v">30dp</dimen>
+    <dimen name="spinner_item_height">35dp</dimen>
 </resources>

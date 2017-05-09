@@ -49,10 +49,15 @@ public class NearFragment extends BaseFragment {
         mPrices = getResources().getStringArray(R.array.spinner_price);
         ArrayAdapter<String> defaultsAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.
                 simple_spinner_item, mDefaults);
+        defaultsAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
         ArrayAdapter<String> distanceAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.
                 simple_spinner_item, mDistances);
+        distanceAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+
         ArrayAdapter<String> pricesAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.
                 simple_spinner_item, mPrices);
+        pricesAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinnerDefault.setAdapter(defaultsAdapter);
         spinnerDistance.setAdapter(distanceAdapter);
         spinnerPrice.setAdapter(pricesAdapter);
