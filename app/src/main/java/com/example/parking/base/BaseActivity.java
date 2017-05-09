@@ -22,6 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public Toolbar toolbar;
     public TextView tvTitle;
     public ProgressDialog progressDialog;
+    public boolean isShowBackBar;
 
     public abstract void init();
 
@@ -52,8 +53,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            ActionBar actionBar =  getSupportActionBar();
-            if(actionBar != null) {
+            ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null &&isShowBackBar) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setDisplayShowTitleEnabled(false);
             }

@@ -4,14 +4,47 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.parking.MainActivity">
+    android:background="@color/white"
+    tools:context="com.example.parking.main.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <include
+        android:id="@+id/layout_appbar"
+        layout="@layout/toolbar" />
+
+    <FrameLayout
+        android:id="@+id/frame_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/radio_group"
+        android:layout_below="@+id/layout_appbar" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/bg_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_near"
+            style="@style/main_rb"
+            android:text="@string/near" />
+
+        <RadioButton
+            style="@style/main_rb"
+            android:text="@string/query" />
+
+        <RadioButton
+            style="@style/main_rb"
+            android:text="@string/add" />
+
+        <RadioButton
+            style="@style/main_rb"
+            android:text="@string/message" />
+
+        <RadioButton
+            style="@style/main_rb"
+            android:text="@string/my" />
+    </RadioGroup>
 </RelativeLayout>
