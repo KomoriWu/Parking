@@ -7,8 +7,6 @@ package com.example.parking.main.view;
 
 
 public interface MainView {
-    void showProgress();
-
     void switchNear();
 
     void switchQuery();
@@ -19,12 +17,5 @@ public interface MainView {
 
     void switchMy();
 
-    void hideProgress();
-
-    void showLoadSuccessMsg(String name);
-
-    void showLoadFailMsg(String message);
-
-    void showLoadExceptionMsg(String exception);
 
 }

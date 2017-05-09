@@ -50,10 +50,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         mMainPresenter.switchNavigation(radioGroup.getCheckedRadioButtonId());
     }
 
-    @Override
-    public void showProgress() {
-
-    }
 
     @Override
     public void switchNear() {
@@ -100,25 +96,6 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         showFragment(mMyFragment);
     }
 
-    @Override
-    public void hideProgress() {
-
-    }
-
-    @Override
-    public void showLoadSuccessMsg(String name) {
-
-    }
-
-    @Override
-    public void showLoadFailMsg(String message) {
-
-    }
-
-    @Override
-    public void showLoadExceptionMsg(String exception) {
-
-    }
 
     private void showFragment(Fragment fragment) {
         getSupportFragmentManager()

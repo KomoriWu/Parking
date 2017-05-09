@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinner_default">
+        <item>默认</item>
+    </string-array>
+    <string-array name="spinner_distance">
+        <item>&#060;1km</item>
+        <item>1km-5km</item>
+        <item>5km-10km</item>
+    </string-array>
+    <string-array name="spinner_price">
+        <item>由低到高</item>
+        <item>由高到低</item>
+    </string-array>
+</resources>
