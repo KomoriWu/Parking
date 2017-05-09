@@ -33,6 +33,7 @@ public class AddFragment extends BaseFragment implements MapManager.onMapListene
     private MapManager mapManager;
     private LatLng mLatLng;
     private IAddPresenter mAddPresenter;
+    private boolean isFirst = true;
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,9 +52,13 @@ public class AddFragment extends BaseFragment implements MapManager.onMapListene
     @Override
     public void mapLocationChanged(AMapLocation location) {
         mLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+
         LatLonPoint latLonPoint = new LatLonPoint(location.getLatitude(), location.getLongitude());
         Log.d(TAG, location.toString());
-        mAddPresenter.searchParking(getActivity(), latLonPoint);
+        if (isFirst) {
+            mAddPresenter.searchParking(getActivity(), latLonPoint);
+            isFirst = false;
+        }
     }
 
     @Override
