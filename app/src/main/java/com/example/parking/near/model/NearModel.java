@@ -10,5 +10,6 @@ import java.util.List;
  */
 
 public interface NearModel {
-    List<Parking> loadParkData(String filterType, String sortType);
+    void loadParkData(String filterType, String sortType, NearModelImpl.OnLoadListener
+            onLoadListener);
 }

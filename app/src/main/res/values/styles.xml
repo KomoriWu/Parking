@@ -17,6 +17,8 @@
     <style name="main_tv">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
         <item name="android:textSize">@dimen/main_text_size</item>
         <item name="android:textColor">@color/text_color</item>
     </style>

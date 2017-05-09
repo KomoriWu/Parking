@@ -104,7 +104,8 @@ public class Parking extends SugarRecord implements Serializable {
 
 
     public static List<Parking> getParkingList(String filterType, String sortType) {
-        List<Parking> parkingList = Parking.find(Parking.class, "filter_type = ?", filterType);
+//        List<Parking> parkingList = Parking.find(Parking.class, "filter_type = ?", filterType);
+        List<Parking> parkingList = Parking.listAll(Parking.class);
         return parkingList;
     }
 }

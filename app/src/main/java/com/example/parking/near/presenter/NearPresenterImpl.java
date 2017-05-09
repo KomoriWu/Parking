@@ -1,13 +1,10 @@
 package com.example.parking.near.presenter;
 
-import android.os.AsyncTask;
-
 import com.example.parking.bean.Parking;
 import com.example.parking.near.model.NearModel;
 import com.example.parking.near.model.NearModelImpl;
 import com.example.parking.near.view.NearView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,28 +22,17 @@ public class NearPresenterImpl implements NearPresenter {
     }
 
     @Override
-    public void loadParkData(final String filterType, final String sortType) {
-        new AsyncTask<Void, Void, List<Parking>>() {
+    public void loadParkData(String filterType, String sortType) {
+        mNearModel.loadParkData(filterType, sortType, new NearModelImpl.OnLoadListener() {
             @Override
-            protected void onPreExecute() {
+            public void showProgress() {
                 mNearView.showProgress();
             }
 
             @Override
-            protected List<Parking> doInBackground(Void... voids) {
-                return mNearModel.loadParkData(filterType, sortType);
-            }
-
-            @Override
-            protected void onPostExecute(List<Parking> parkingList) {
-                parkingList = new ArrayList<>();
-                Parking parking = new Parking();
-                parking.setAddress("地址");
-                parking.setName("停车场");
-                parkingList.add(parking);
+            public void success(List<Parking> parkingList) {
                 mNearView.showParkData(parkingList);
             }
-
-        }.execute();
+        });
     }
 }
