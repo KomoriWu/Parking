@@ -5,9 +5,6 @@ package com.example.parking.near.presenter;
  * on 2017-05-09.
  */
 
-public class NearPresenter implements NearPresenterImpl {
-    @Override
-    public void loadParkData(String distance, String price) {
-
-    }
+public interface NearPresenter {
+    void loadParkData(String filterType, String sortType);
 }

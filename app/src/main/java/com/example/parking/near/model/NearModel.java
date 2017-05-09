@@ -2,18 +2,13 @@ package com.example.parking.near.model;
 
 import com.example.parking.bean.Parking;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by KomoriWu
  * on 2017-05-09.
  */
 
-public class NearModel implements NearModelImpl {
-
-    @Override
-    public ArrayList<Parking> loadParkData(String distance, String price) {
-//        ArrayList<Parking> parkingArrayList=Parking.find()
-        return null;
-    }
+public interface NearModel {
+    List<Parking> loadParkData(String filterType, String sortType);
 }

@@ -1,6 +1,7 @@
 package com.example.parking.near;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +11,14 @@ import android.widget.Spinner;
 
 import com.example.parking.R;
 import com.example.parking.base.BaseFragment;
+import com.example.parking.bean.Parking;
+import com.example.parking.near.view.NearView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Created by KomoriWu
@@ -21,7 +26,8 @@ import butterknife.Unbinder;
  */
 
 
-public class NearFragment extends BaseFragment {
+public class NearFragment extends BaseFragment implements NearView, NearAdapter.
+        OnItemClickListener {
 
     @BindView(R.id.spinner_default)
     Spinner spinnerDefault;
@@ -34,12 +40,15 @@ public class NearFragment extends BaseFragment {
     private String[] mDefaults;
     private String[] mDistances;
     private String[] mPrices;
+    private NearAdapter mNearAdapter;
+    private List<Parking> mParkingList;
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_near, null);
         ButterKnife.bind(this, view);
         initSpinner();
+        initRecycleView();
         return view;
     }
 
@@ -63,6 +72,21 @@ public class NearFragment extends BaseFragment {
         spinnerPrice.setAdapter(pricesAdapter);
     }
 
+    private void initRecycleView() {
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mNearAdapter = new NearAdapter(getActivity(), this);
+        recyclerView.setAdapter(mNearAdapter);
+        mParkingList = new ArrayList<>();
+    }
 
+    @Override
+    public void showParkData(List<Parking> parkingList) {
+        mNearAdapter.setMusicList(parkingList);
+    }
 
+    @Override
+    public void onItemClick(View view, int position) {
+
+    }
 }

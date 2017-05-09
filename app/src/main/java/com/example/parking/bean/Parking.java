@@ -1,10 +1,14 @@
 package com.example.parking.bean;
 
+import com.example.parking.utils.Utils;
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.Until;
 import com.orm.SugarRecord;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by KomoriWu
@@ -17,27 +21,51 @@ public class Parking extends SugarRecord implements Serializable {
     @SerializedName("address")
     private String address;
     @SerializedName("space")
-    private String space;
+    private int space;
     @SerializedName("price")
-    private String price;
+    private int price;
+    @SerializedName("distance")
+    private int distance;
     @SerializedName("phoneNumber")
     private String phoneNumber;
     @SerializedName("imgUrl")
     private String imgUrl;
-    @SerializedName("distance")
-    private String distance;
+
+    @SerializedName("filterType")
+    private String filterType;
 
     public Parking() {
     }
 
-    public Parking(String name, String address, String space, String price, String phoneNumber,
-                   String imgUrl, String distance) {
-        this.name = name;
-        this.address = address;
+    public String getFilterType() {
+        return filterType;
+    }
+
+    public void setFilterType(String filterType) {
+        this.filterType = filterType;
+    }
+
+    public int getSpace() {
+        return space;
+    }
+
+    public void setSpace(int space) {
         this.space = space;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
         this.price = price;
-        this.phoneNumber = phoneNumber;
-        this.imgUrl = imgUrl;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
         this.distance = distance;
     }
 
@@ -57,21 +85,6 @@ public class Parking extends SugarRecord implements Serializable {
         this.address = address;
     }
 
-    public String getSpace() {
-        return space;
-    }
-
-    public void setSpace(String space) {
-        this.space = space;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -89,11 +102,9 @@ public class Parking extends SugarRecord implements Serializable {
         this.imgUrl = imgUrl;
     }
 
-    public String getDistance() {
-        return distance;
-    }
 
-    public void setDistance(String distance) {
-        this.distance = distance;
+    public static List<Parking> getParkingList(String filterType, String sortType) {
+        List<Parking> parkingList = Parking.find(Parking.class, "filter_type = ?", filterType);
+        return parkingList;
     }
 }
