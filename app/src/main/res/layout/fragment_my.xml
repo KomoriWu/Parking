@@ -1,7 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_content">
 
+    <RelativeLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/min_margin">
 
+        <ImageView
+            android:id="@+id/iv_head"
+            android:layout_width="@dimen/my_iv_head"
+            android:layout_height="@dimen/my_iv_head"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_account"
+            style="@style/main_tv"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_toRightOf="@+id/iv_head"
+            android:text="@string/account" />
+    </RelativeLayout>
+
+    <com.example.parking.widget.ItemLayout
+        android:id="@+id/item_my_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_top"
+        android:layout_marginTop="@dimen/item_padding_left"
+        app:iv_head="@mipmap/icon_my_order"
+        app:text_name="@string/my_order" />
+
+    <com.example.parking.widget.ItemLayout
+        android:id="@+id/item_collect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_my_order"
+        app:iv_head="@mipmap/icon_collect"
+        app:text_name="@string/collect" />
+
+    <com.example.parking.widget.ItemLayout
+        android:id="@+id/item_wallet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_collect"
+        app:iv_head="@mipmap/icon_wallet"
+        app:text_name="@string/wallet" />
+
+    <com.example.parking.widget.ItemLayout
+        android:id="@+id/item_about_us"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_wallet"
+        app:iv_head="@mipmap/icon_about_us"
+        app:text_name="@string/about_us" />
+
+    <com.example.parking.widget.ItemLayout
+        android:id="@+id/item_safety_exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_about_us"
+        android:layout_marginTop="@dimen/item_padding_left"
+        app:iv_head="@mipmap/icon_exit"
+        app:text_name="@string/safety_exit" />
 </RelativeLayout>

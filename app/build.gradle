@@ -17,8 +17,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    signingConfigs{
-        debug{
+    signingConfigs {
+        debug {
             keyAlias 'zeller'
             storeFile file('./keystore/zeller.keystore')
             storePassword "123456"
@@ -32,7 +32,14 @@ android {
             v2SigningEnabled false
         }
     }
-
+//    splits {
+//        abi {
+//            enable true
+//            reset()
+//            include 'x86', 'armeabi-v7a','x86_64'
+//            universalApk true
+//        }
+//    }
 }
 
 dependencies {
@@ -41,9 +48,6 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile files('libs/universal-image-loader-1.9.5.jar')
-    /*注解框架*/
-    /*权限申请*/
-    /*sql*/
     compile files('libs/AMap_Search_V3.5.0_20160927.jar')
     compile files('libs/AMap_Location_V3.00_20160922.jar')
     compile files('libs/AMap3DMap_3.4.0_AMapNavi_1.9.2_20160830.jar')
