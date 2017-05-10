@@ -21,4 +21,5 @@
     <string name="wallet">钱包</string>
     <string name="about_us">关于我们</string>
     <string name="safety_exit">安全退出</string>
+    <string name="exit_program_hint">再按一次返回键退出</string>
 </resources>
