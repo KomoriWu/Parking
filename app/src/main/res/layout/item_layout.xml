@@ -1,42 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/layout_park_item"
+    android:id="@+id/layout_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/ripple_list_item_effect">
 
     <RelativeLayout
-        android:layout_width="match_parent"
         android:id="@+id/layout_top"
-        android:layout_height="@dimen/park_item_height">
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/widget_item_height">
+
         <ImageView
             android:id="@+id/iv_head"
-            android:layout_width="@dimen/park_item_height"
-            android:layout_height="@dimen/park_item_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:src="@mipmap/ic_launcher" />
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/main_tv"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_toLeftOf="@+id/iv_right"
             android:layout_toRightOf="@+id/iv_head"
-            android:gravity="center|left">
-
-            <TextView
-                android:id="@+id/tv_name"
-                style="@style/main_tv"
-                android:text="name" />
-
-            <TextView
-                android:id="@+id/tv_address"
-                style="@style/main_tv"
-                android:layout_below="@+id/tv_name"
-                android:text="address"
-                android:textSize="@dimen/text_size" />
-        </RelativeLayout>
+            android:text="name" />
 
         <ImageView
             android:id="@+id/iv_right"
@@ -47,6 +36,7 @@
             android:layout_marginRight="@dimen/divide_padding_right"
             android:src="@mipmap/icon_right_arrow" />
     </RelativeLayout>
+
     <View
         style="@style/view_line"
         android:layout_below="@+id/layout_top"

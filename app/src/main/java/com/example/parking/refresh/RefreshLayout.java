@@ -286,9 +286,9 @@ import com.example.parking.R;
         setEnabled(a.getBoolean(0, true));
         a.recycle();
 
-        final TypedArray a2 = context.obtainStyledAttributes(attrs, R.styleable.SwipyRefreshLayout);
+        final TypedArray a2 = context.obtainStyledAttributes(attrs, R.styleable.SwipeRefreshLayout);
         SwipeRefreshLayoutDirection direction
-                = SwipeRefreshLayoutDirection.getFromInt(a2.getInt(R.styleable.SwipyRefreshLayout_direction, 0));
+                = SwipeRefreshLayoutDirection.getFromInt(a2.getInt(R.styleable.SwipeRefreshLayout_direction, 0));
         if (direction != SwipeRefreshLayoutDirection.BOTH) {
             mDirection = direction;
             mBothDirection = false;

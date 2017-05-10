@@ -15,4 +15,10 @@
     <string name="park_address">地址：%s</string>
     <string name="know">知道了</string>
     <string name="the_last_page">最后一页到了！</string>
+    <string name="account">账号：%s</string>
+    <string name="my_order">订单</string>
+    <string name="collect">收藏</string>
+    <string name="wallet">钱包</string>
+    <string name="about_us">关于我们</string>
+    <string name="safety_exit">安全退出</string>
 </resources>

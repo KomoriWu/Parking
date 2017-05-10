@@ -38,11 +38,11 @@ public class AddFragment extends BaseFragment implements MapManager.onMapListene
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add, null);
         ButterKnife.bind(this, view);
-//        AMap aMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).
-//                getMap();
-//        mapManager = new MapManager(getActivity(), aMap);
-//        mapManager.setOnMapListener(this);
-//        mAddPresenter = new AddPresenterImpl(AddFragment.this);
+        AMap aMap = ((SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map)).
+                getMap();
+        mapManager = new MapManager(getActivity(), aMap);
+        mapManager.setOnMapListener(this);
+        mAddPresenter = new AddPresenterImpl(AddFragment.this);
         return view;
     }
 
