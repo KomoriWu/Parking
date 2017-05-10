@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout_top"
         android:layout_marginTop="@dimen/item_padding_left"
+        app:iv_head="@mipmap/icon_my_order"
         app:text_name="@string/my_order" />
 
     <com.example.parking.widget.ItemLayout
@@ -42,6 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_my_order"
+        app:iv_head="@mipmap/icon_collect"
         app:text_name="@string/collect" />
 
     <com.example.parking.widget.ItemLayout
@@ -49,6 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_collect"
+        app:iv_head="@mipmap/icon_wallet"
         app:text_name="@string/wallet" />
 
     <com.example.parking.widget.ItemLayout
@@ -56,6 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_wallet"
+        app:iv_head="@mipmap/icon_about_us"
         app:text_name="@string/about_us" />
 
     <com.example.parking.widget.ItemLayout
@@ -63,5 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/item_about_us"
+        android:layout_marginTop="@dimen/item_padding_left"
+        app:iv_head="@mipmap/icon_exit"
         app:text_name="@string/safety_exit" />
 </RelativeLayout>

@@ -54,7 +54,8 @@ public class NearFragment extends BaseFragment implements NearView, NearAdapter.
     private List<Parking> mParkingList;
     private NearPresenter mNearPresenter;
     private int mPage;
-    private int mSize = 8;
+    private int mSize = 10;
+    private int mCount;
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class NearFragment extends BaseFragment implements NearView, NearAdapter.
         mNearPresenter = new NearPresenterImpl(this);
         initSpinner();
         initRecycleView();
+        mCount = Parking.listAll(Parking.class).size();
         return view;
     }
 
@@ -123,7 +125,7 @@ public class NearFragment extends BaseFragment implements NearView, NearAdapter.
     public void showParkData(final List<Parking> parkingList) {
         mParkingList = parkingList;
         mNearAdapter.addParkList(parkingList, mPage == 1 ? true : false);
-        if (Utils.POI_SEARCH_COUNT <= mPage * mSize) {
+        if (mCount <= mPage * mSize) {
             Utils.showSnackBar(layoutPark, getString(R.string.the_last_page));
             refreshLayout.setDirection(SwipeRefreshLayoutDirection.TOP);
         }

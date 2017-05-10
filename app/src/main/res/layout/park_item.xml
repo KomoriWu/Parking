@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/divide_padding_right"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:src="@mipmap/icon_right_arrow" />
     </RelativeLayout>
     <View
