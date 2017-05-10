@@ -17,8 +17,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    signingConfigs{
-        debug{
+    signingConfigs {
+        debug {
             keyAlias 'zeller'
             storeFile file('./keystore/zeller.keystore')
             storePassword "123456"

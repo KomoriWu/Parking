@@ -39,11 +39,7 @@
             android:value="com.example.parking.bean" />
 
         <activity android:name=".main.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".near.ParkActivity" />
 
@@ -51,9 +47,16 @@
         <meta-data
             android:name="com.amap.api.v2.apikey"
             android:value="475950f8047f87d2c2f075e4f1d4b1df" />
+
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name=".TestActivity">
+        <activity android:name=".TestActivity"/>
+        <activity android:name=".start.StartActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

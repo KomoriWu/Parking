@@ -1,5 +1,6 @@
 package com.example.parking.utils;
 
+import android.Manifest;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
@@ -27,5 +28,13 @@ public class Utils {
 
                     }
                 }).show();
+    }
+
+    public static String getPermission(int position) {
+        String[] permissions = new String[]{
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION
+        };
+        return permissions[position];
     }
 }
