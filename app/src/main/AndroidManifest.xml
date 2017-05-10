@@ -53,8 +53,7 @@
             android:value="475950f8047f87d2c2f075e4f1d4b1df" />
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name=".TestActivity">
-        </activity>
+        <activity android:name=".add.navi.NavigationActivity" />
     </application>
 
 </manifest>

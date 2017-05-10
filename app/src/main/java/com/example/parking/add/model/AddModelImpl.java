@@ -49,12 +49,17 @@ public class AddModelImpl implements IAddModel, PoiSearch.OnPoiSearchListener {
             mParkListener.parkSearchSucceed(queryItems.get(j));
             //sql save
             savePark(poiItem);
+            //搜索完成
+            if (j == queryItems.size() - 1) {
+                mParkListener.parkSearchCompleted();
+            }
         }
 
 
     }
 
     private void savePark(PoiItem poiItem) {
+
         Parking parking = new Parking();
         parking.setAddress(poiItem.getCityName() + poiItem.getAdName() + poiItem.getSnippet());
         parking.setName(poiItem.getTitle());

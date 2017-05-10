@@ -37,4 +37,9 @@ public class AddPresenterImpl implements IAddPresenter, OnParkSearchListener {
     public void parkSearchSucceed(PoiItem poiItem) {
         mAddView.searchSucceed(poiItem);
     }
+
+    @Override
+    public void parkSearchCompleted() {
+        mAddView.searchCompleted();
+    }
 }

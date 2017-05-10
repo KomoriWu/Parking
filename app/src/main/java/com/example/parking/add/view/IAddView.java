@@ -14,4 +14,6 @@ public interface IAddView {
 
     void searchSucceed(PoiItem poiItem);
 
+    void searchCompleted();
+
 }
