@@ -4,7 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/bg_content"
     tools:context="com.example.parking.main.MainActivity">
 
     <include
@@ -19,16 +19,15 @@
         android:layout_below="@+id/layout_appbar" />
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:layout_below="@+id/frame_content"
-        android:background="@color/medium_gray" />
+        style="@style/view_line"
+        android:layout_below="@+id/frame_content" />
 
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/rb_padding"
         android:paddingTop="@dimen/rb_padding">

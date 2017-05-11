@@ -3,9 +3,11 @@ package com.example.parking.main;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.parking.R;
 import com.example.parking.add.AddFragment;
@@ -34,7 +36,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private MessageFragment mMessageFragment;
     private MyFragment mMyFragment;
     private MainPresenter mMainPresenter;
-
+    private long mExitTime;
     @Override
     public void init() {
         setContentView(R.layout.activity_main);
@@ -102,5 +104,20 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 .beginTransaction()
                 .replace(R.id.frame_content, fragment)
                 .commit();
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                Toast.makeText(this, R.string.exit_program_hint, Toast.LENGTH_SHORT).show();
+                mExitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

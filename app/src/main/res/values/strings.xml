@@ -15,4 +15,31 @@
     <string name="park_address">地址：%s</string>
     <string name="know">知道了</string>
     <string name="the_last_page">最后一页到了！</string>
+    <string name="account">账号：%s</string>
+    <string name="my_order">订单</string>
+    <string name="collect">收藏</string>
+    <string name="wallet">钱包</string>
+    <string name="about_us">关于我们</string>
+    <string name="forgot_password">忘记密码?</string>
+    <string name="safety_exit">安全退出</string>
+    <string name="exit_program_hint">再按一次返回键退出</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">账号</string>
+    <string name="prompt_password">密码</string>
+    <string name="action_sign_in">登录或注册</string>
+    <string name="action_sign_in_short">登录</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">这个密码太短了</string>
+    <string name="error_incorrect_password">这个密码是不正确的</string>
+    <string name="error_field_required">这个字段是必需的</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="et_digits">0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ</string>
+
 </resources>
