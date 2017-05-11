@@ -80,6 +80,16 @@ public class Utils {
                 .build();
     }
 
+    public static String getPhoneNumber() {
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = 0; i < 10; i++) {
+            int random = (int) (Math.random() * 10);
+            stringBuffer.append(random);
+        }
+        return "1" + stringBuffer.toString();
+
+    }
+
     public static String getParkImaUrl(int position) {
         String[] strings = {"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494492808510&di=51b23c2b15a2dce687690382d28fed20&imgtype=0&src=http%3A%2F%2Fpic33.photophoto.cn%2F20141117%2F0038038023474945_b.jpg",
                 "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1495087560&di=9c0a974139a7c7c4eb7c8b0dbc73f5a3&imgtype=jpg&er=1&src=http%3A%2F%2Fimg01.taopic.com%2F141117%2F240450-14111FJR929.jpg",
@@ -115,4 +125,5 @@ public class Utils {
                 "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494493068223&di=fbf04bf1c32c99a9f7d7fb3712d32390&imgtype=0&src=http%3A%2F%2Fimg01.taopic.com%2F141117%2F240450-14111FP14977.jpg"};
         return strings[position];
     }
+
 }

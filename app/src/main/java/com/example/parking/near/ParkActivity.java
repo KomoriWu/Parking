@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.parking.R;
+import com.example.parking.application.MyApplication;
 import com.example.parking.base.BaseActivity;
 import com.example.parking.bean.Parking;
 import com.example.parking.utils.Utils;
@@ -36,6 +37,8 @@ public class ParkActivity extends BaseActivity {
         isShowBackBar = true;
         initToolbar();
         tvTitle.setText(mParking.getName());
+        MyApplication.getImageLoader(this).displayImage(mParking.getImgUrl(),
+                ivParkImg, Utils.getImageOptions(R.mipmap.park, 360));
         tvParkSpace.setText(String.format(getString(R.string.park_space), mParking.
                 getSpace()+""));
         tvParkPrice.setText(String.format(getString(R.string.park_price), mParking.

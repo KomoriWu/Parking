@@ -66,6 +66,8 @@ public class AddModelImpl implements IAddModel, PoiSearch.OnPoiSearchListener {
         parking.setDistance(poiItem.getDistance());
         parking.setImgUrl(Utils.getParkImaUrl(j));
         parking.setPrice(5 + (int) (Math.random() * 10));
+        parking.setSpace(35 + (int) (Math.random() * 200));
+        parking.setPhoneNumber(Utils.getPhoneNumber());
         if (poiItem.getDistance() < 1000) {
             parking.setFilterType("1");
         } else if (poiItem.getDistance() < 5000) {
