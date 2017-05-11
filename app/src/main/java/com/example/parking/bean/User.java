@@ -5,6 +5,7 @@ import com.orm.SugarRecord;
 import com.orm.dsl.Table;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by KomoriWu
@@ -41,4 +42,23 @@ public class User extends SugarRecord implements Serializable {
         this.password = password;
     }
 
+    public boolean isRegister() {
+        List<User> userList = User.listAll(User.class);
+        for (User user : userList) {
+            if (user.getAccount().equals(account)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isLogin() {
+        List<User> userList = User.listAll(User.class);
+        for (User user : userList) {
+            if (user.getAccount().equals(this.account) && user.getPassword().equals(this.password)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

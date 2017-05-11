@@ -35,7 +35,6 @@ public class Utils {
     //讯飞语音
     public static final String XUN_FEI_APP_ID = "57d0dad1";
 
-    public static final int POI_SEARCH_COUNT = 50;
 
 
     public static void showSnackBar(View view, String str) {
