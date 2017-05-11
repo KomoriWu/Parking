@@ -3,16 +3,17 @@
     android:id="@+id/layout_park_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/ripple_list_item_effect">
+    android:background="@drawable/ripple_item_list_effect">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:id="@+id/layout_top"
+        android:gravity="center"
         android:layout_height="@dimen/park_item_height">
         <ImageView
             android:id="@+id/iv_head"
-            android:layout_width="@dimen/park_item_height"
-            android:layout_height="@dimen/park_item_height"
+            android:layout_width="@dimen/my_iv_head"
+            android:layout_height="@dimen/my_iv_head"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:src="@mipmap/ic_launcher" />

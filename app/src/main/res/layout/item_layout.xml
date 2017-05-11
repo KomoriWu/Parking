@@ -3,7 +3,7 @@
     android:id="@+id/layout_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/ripple_list_item_effect">
+    android:background="@drawable/ripple_item_effect">
 
     <RelativeLayout
         android:id="@+id/layout_top"

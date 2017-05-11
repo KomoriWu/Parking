@@ -10,7 +10,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.parking.R;
+import com.example.parking.application.MyApplication;
 import com.example.parking.bean.Parking;
+import com.example.parking.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +68,9 @@ public class NearAdapter extends RecyclerView.Adapter<NearAdapter.ParkViewHolder
         Parking parking = mParkingList.get(position);
         holder.tvName.setText(parking.getName());
         holder.tvAddress.setText(parking.getAddress());
+        MyApplication.getImageLoader(mContext).displayImage(Utils.getParkImaUrl(position),
+                holder.ivHead, Utils.getImageOptions(R.mipmap.park, 360));
+
     }
 
     @Override
