@@ -12,4 +12,6 @@ import com.amap.api.services.core.PoiItem;
 
 public interface OnParkSearchListener {
     void parkSearchSucceed(PoiItem poiItem);
+
+    void parkSearchCompleted();
 }

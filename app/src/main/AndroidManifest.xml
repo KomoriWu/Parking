@@ -53,6 +53,9 @@
 
         <service android:name="com.amap.api.location.APSService" />
 
+
+        <activity android:name=".add.navi.NavigationActivity" />
+
         <activity android:name=".TestActivity" />
         <activity android:name=".start.StartActivity">
             <intent-filter>
@@ -66,6 +69,7 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/title_activity_login" />
+
     </application>
 
 </manifest>

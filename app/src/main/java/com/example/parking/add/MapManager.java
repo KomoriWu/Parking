@@ -13,7 +13,6 @@ import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
-import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
@@ -166,14 +165,14 @@ public class MapManager implements LocationSource, AMapLocationListener, AMap.On
             if (amapLocation != null
                     && amapLocation.getErrorCode() == 0) {
                 mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
-                if (!hasSetZoom) {
-                    zoom();
-                    hasSetZoom = true;
-                }
                 Log.d(TAG, "定位成功");
                 if (onMapListener != null) {
                     onMapListener.mapLocationChanged(amapLocation);
                 }
+//                if (!hasSetZoom) {
+//                    zoom();
+//                    hasSetZoom = true;
+//                }
             } else {
                 String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
                 Log.e(TAG, errText);
@@ -187,6 +186,13 @@ public class MapManager implements LocationSource, AMapLocationListener, AMap.On
     public void onDestroy() {
         if (null != mlocationClient) {
             mlocationClient.onDestroy();
+        }
+    }
+
+    public void zoomToCurrent() {
+        if (!hasSetZoom) {
+            zoom();
+            hasSetZoom = true;
         }
     }
 
