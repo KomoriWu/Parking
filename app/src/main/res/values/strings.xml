@@ -48,4 +48,11 @@
     <string name="login_success">登录成功！</string>
     <string name="to_login">请登录</string>
 
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="reserve_number">预定车位数:</string>
+    <string name="confirm_reserve">确认预定</string>
+    <string name="reserve_success">预定成功，半小时之后开始计费。</string>
+
+
 </resources>
