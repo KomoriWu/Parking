@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:id="@+id/layout"
     tools:context="com.example.parking.my.LoginActivity">
 
     <include layout="@layout/toolbar" />

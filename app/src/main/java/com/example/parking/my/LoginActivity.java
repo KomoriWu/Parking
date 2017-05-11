@@ -25,10 +25,13 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.parking.R;
 import com.example.parking.base.BaseActivity;
+import com.example.parking.bean.User;
+import com.example.parking.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,6 +71,8 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    @BindView(R.id.layout)
+    LinearLayout layout;
 
     @Override
     public void init() {
@@ -181,10 +186,6 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
         }
@@ -332,25 +333,29 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
             } catch (InterruptedException e) {
                 return false;
             }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
+            User user = new User(mEmail, mPassword);
+            if (user.isLogin()) {
+                Utils.showSnackBar(layout, getString(R.string.login_success));
+                try {
+                    // Simulate network access.
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    return false;
                 }
+                return true;
+            } else {
+                return false;
             }
-
-            // TODO: register the new account here.
-            return true;
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
-
             if (success) {
+                Intent intent = getIntent();
+                intent.putExtra(Utils.ACCOUNT, mEmail);
+                setResult(RESULT_OK, intent);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
