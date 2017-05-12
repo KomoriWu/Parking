@@ -14,7 +14,7 @@
     <dimen name="divide_padding_right">32dp</dimen>
     <dimen name="spinner_drop_down_v">30dp</dimen>
     <dimen name="spinner_item_height">35dp</dimen>
-    <dimen name="park_item_height">65dp</dimen>
+    <dimen name="park_item_height">100dp</dimen>
     <dimen name="park_iv">200dp</dimen>
     <dimen name="my_iv_head">80dp</dimen>
     <dimen name="widget_item_height">45dp</dimen>

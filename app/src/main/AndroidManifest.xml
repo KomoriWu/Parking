@@ -43,7 +43,7 @@
             android:name="DOMAIN_PACKAGE_NAME"
             android:value="com.example.parking.bean" />
 
-        <activity android:name=".main.MainActivity"></activity>
+        <activity android:name=".main.MainActivity" />
         <activity android:name=".near.ParkActivity" />
 
         <!-- 高德地图 -->
@@ -64,9 +64,13 @@
         </activity>
         <activity
             android:name=".my.LoginActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity
+            android:name=".my.RegisterActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
     </application>
 
 </manifest>

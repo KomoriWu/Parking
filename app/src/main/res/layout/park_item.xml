@@ -3,16 +3,18 @@
     android:id="@+id/layout_park_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/ripple_list_item_effect">
+    android:background="@drawable/ripple_item_list_effect">
 
     <RelativeLayout
-        android:layout_width="match_parent"
         android:id="@+id/layout_top"
-        android:layout_height="@dimen/park_item_height">
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/park_item_height"
+        android:gravity="center">
+
         <ImageView
             android:id="@+id/iv_head"
-            android:layout_width="@dimen/park_item_height"
-            android:layout_height="@dimen/park_item_height"
+            android:layout_width="@dimen/my_iv_head"
+            android:layout_height="@dimen/my_iv_head"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:src="@mipmap/ic_launcher" />
@@ -31,12 +33,40 @@
                 style="@style/main_tv"
                 android:text="name" />
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_name"
+                android:id="@+id/layout_price"
+                android:layout_marginTop="@dimen/min_margin"
+                android:orientation="horizontal">
+                <TextView
+                    style="@style/main_tv"
+                    android:text="¥"
+                    android:textSize="@dimen/text_size" />
+                <TextView
+                    style="@style/main_tv"
+                    android:id="@+id/tv_price"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="@dimen/text_size" />
+                <TextView
+                    style="@style/main_tv"
+                    android:layout_marginLeft="3dp"
+                    android:text="/小时"
+                    android:textSize="@dimen/text_size" />
+            </LinearLayout>
+
+
             <TextView
                 android:id="@+id/tv_address"
                 style="@style/main_tv"
-                android:layout_below="@+id/tv_name"
+                android:layout_below="@+id/layout_price"
+                android:layout_marginTop="@dimen/min_margin"
                 android:text="address"
-                android:textSize="@dimen/text_size" />
+                android:textSize="@dimen/mini_text_size" />
+
+
         </RelativeLayout>
 
         <ImageView
@@ -48,6 +78,7 @@
             android:layout_marginRight="@dimen/activity_horizontal_margin"
             android:src="@mipmap/icon_right_arrow" />
     </RelativeLayout>
+
     <View
         style="@style/view_line"
         android:layout_below="@+id/layout_top"

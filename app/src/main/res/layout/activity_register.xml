@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
-                    android:imeActionId="@+id/login"
+                    android:imeActionId="@+id/register"
                     android:imeActionLabel="@string/action_sign_in_short"
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
@@ -74,16 +74,31 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <Button
-                android:id="@+id/email_sign_in_button"
-                style="?android:textAppearanceSmall"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/again_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_again_password"
+                    android:imeActionId="@+id/again_register"
+                    android:imeActionLabel="@string/action_sign_in_short"
+                    android:imeOptions="actionUnspecified"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textSize="@dimen/main_text_size" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <CheckBox
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/ripple_btn_effect"
-                android:text="@string/login"
-                android:textColor="@color/white"
-                android:textSize="@dimen/main_text_size" />
+                android:text="@string/register_service"
+                android:checked="true"
+                android:textColor="@color/text_color" />
 
             <Button
                 android:id="@+id/btn_register"
@@ -96,11 +111,6 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/main_text_size" />
 
-            <TextView
-                style="@style/main_tv"
-                android:layout_gravity="end"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="@string/forgot_password" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

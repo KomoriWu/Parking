@@ -48,7 +48,7 @@ public class AddModelImpl implements IAddModel, PoiSearch.OnPoiSearchListener {
             PoiItem poiItem = queryItems.get(j);
             mParkListener.parkSearchSucceed(queryItems.get(j));
             //sql save
-            savePark(poiItem);
+            savePark(poiItem, j);
             //搜索完成
             if (j == queryItems.size() - 1) {
                 mParkListener.parkSearchCompleted();
@@ -58,12 +58,16 @@ public class AddModelImpl implements IAddModel, PoiSearch.OnPoiSearchListener {
 
     }
 
-    private void savePark(PoiItem poiItem) {
+    private void savePark(PoiItem poiItem, int j) {
 
         Parking parking = new Parking();
         parking.setAddress(poiItem.getCityName() + poiItem.getAdName() + poiItem.getSnippet());
         parking.setName(poiItem.getTitle());
         parking.setDistance(poiItem.getDistance());
+        parking.setImgUrl(Utils.getParkImaUrl(j));
+        parking.setPrice(5 + (int) (Math.random() * 10));
+        parking.setSpace(35 + (int) (Math.random() * 200));
+        parking.setPhoneNumber(Utils.getPhoneNumber());
         if (poiItem.getDistance() < 1000) {
             parking.setFilterType("1");
         } else if (poiItem.getDistance() < 5000) {

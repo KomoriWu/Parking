@@ -19,6 +19,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Created by KomoriWu
  * on 2017-05-09.
@@ -26,7 +28,7 @@ import butterknife.Unbinder;
 
 
 public class MyFragment extends BaseFragment {
-
+    public static final int REQUEST_CODE = 100;
     @BindView(R.id.iv_head)
     ImageView ivHead;
     @BindView(R.id.tv_account)
@@ -48,11 +50,19 @@ public class MyFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_account:
-                Intent intent=new Intent(getActivity(),LoginActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
                 break;
             case R.id.item_safety_exit:
                 break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (REQUEST_CODE == requestCode && resultCode == RESULT_OK) {
+            String account = data.getStringExtra(Utils.ACCOUNT);
+            tvAccount.setText(String.format(getString(R.string.account), account));
         }
     }
 }
