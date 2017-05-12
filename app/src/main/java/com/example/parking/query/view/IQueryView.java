@@ -1,4 +1,8 @@
-package com.example.parking.query.model;
+package com.example.parking.query.view;
+
+import com.example.parking.query.model.SearchResult;
+
+import java.util.List;
 
 /**
  * Class description goes here.
@@ -8,5 +12,10 @@ package com.example.parking.query.model;
  * @date 2017/5/12
  */
 
-public class IQueryView {
+public interface IQueryView {
+    void startQuery();
+
+    void querySucceed(List<SearchResult> searchResults);
+
+    void queryFailed();
 }

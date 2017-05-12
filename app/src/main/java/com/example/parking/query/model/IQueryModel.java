@@ -1,5 +1,7 @@
 package com.example.parking.query.model;
 
+import android.content.Context;
+
 /**
  * Class description goes here.
  *
@@ -8,5 +10,8 @@ package com.example.parking.query.model;
  * @date 2017/5/12
  */
 
-public class IQueryModel {
+public interface IQueryModel {
+    void startQuery(Context context,String query);
+
+    void tipQuery(Context context,String keyWord);
 }

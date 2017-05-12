@@ -3,6 +3,7 @@ package com.example.parking.main;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -19,6 +20,7 @@ import com.example.parking.message.MessageFragment;
 import com.example.parking.my.MyFragment;
 import com.example.parking.near.NearFragment;
 import com.example.parking.query.QueryFragment;
+import com.example.parking.query.model.SearchResult;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +39,8 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     private MyFragment mMyFragment;
     private MainPresenter mMainPresenter;
     private long mExitTime;
+    private Fragment mCurrentFragment;
+
     @Override
     public void init() {
         setContentView(R.layout.activity_main);
@@ -105,6 +109,17 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
                 .replace(R.id.frame_content, fragment)
                 .commit();
     }
+
+    public void showHideFragment(Fragment from, Fragment to) {
+        mCurrentFragment = to;
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        if (!to.isAdded()) {
+            fragmentTransaction.hide(from).add(R.id.frame_content, to).commit();
+        } else {
+            fragmentTransaction.hide(from).show(to).commit();
+        }
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -119,5 +134,10 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void querySucceed(SearchResult searchResult) {
+        radioGroup.check(R.id.rb_add);
+        mAddFragment.planRoute(searchResult);
     }
 }

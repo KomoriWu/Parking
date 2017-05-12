@@ -1,5 +1,6 @@
 package com.example.parking.application;
 
+import android.app.Application;
 import android.content.Context;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -13,11 +14,12 @@ import com.orm.SugarApp;
 
 public class MyApplication extends SugarApp {
     private static ImageLoader mImageLoader;
+    private static Application sInstance;
 
     @Override
     public void onCreate() {
         super.onCreate();
-
+        sInstance = this;
     }
 
     public static ImageLoader getImageLoader(Context context) {
@@ -33,6 +35,8 @@ public class MyApplication extends SugarApp {
         return mImageLoader;
     }
 
-
+    public static Application getAppContext() {
+        return sInstance;
+    }
 
 }

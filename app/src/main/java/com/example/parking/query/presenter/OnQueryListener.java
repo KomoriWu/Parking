@@ -1,5 +1,9 @@
 package com.example.parking.query.presenter;
 
+import com.example.parking.query.model.SearchResult;
+
+import java.util.List;
+
 /**
  * Class description goes here.
  *
@@ -8,5 +12,9 @@ package com.example.parking.query.presenter;
  * @date 2017/5/12
  */
 
-public class OnQueryListener {
+public interface OnQueryListener {
+
+    void querySucceed(List<SearchResult> searchResults);
+
+    void queryFailed();
 }
