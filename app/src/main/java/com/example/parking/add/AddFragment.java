@@ -3,6 +3,7 @@ package com.example.parking.add;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.example.parking.add.presenter.IAddPresenter;
 import com.example.parking.add.service.TTSController;
 import com.example.parking.add.view.IAddView;
 import com.example.parking.base.BaseFragment;
+import com.example.parking.query.model.SearchResult;
 import com.example.parking.utils.Utils;
 
 import butterknife.ButterKnife;
@@ -67,7 +69,6 @@ public class AddFragment extends BaseFragment implements MapManager.onMapListene
 
     @Override
     public void mapMarkerClick(Marker marker) {
-
         if (marker.isInfoWindowShown()) {
             NaviLatLng startLatlng = new NaviLatLng(mLatLng.latitude, mLatLng.longitude);
             LatLng markerLatlng = marker.getPosition();
@@ -117,5 +118,17 @@ public class AddFragment extends BaseFragment implements MapManager.onMapListene
                 })
                 .create()
                 .show();
+    }
+
+    public void planRoute(final SearchResult searchResult) {
+        //防止显示附近搜索结果
+        isFirst = false;
+        //切换到该界面，为防止map没有初始化完成，延时执行
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mapManager.clearAndAddMarker(searchResult);
+            }
+        }, 500);
     }
 }

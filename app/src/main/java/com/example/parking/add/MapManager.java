@@ -13,11 +13,15 @@ import com.amap.api.maps.CameraUpdateFactory;
 import com.amap.api.maps.LocationSource;
 import com.amap.api.maps.UiSettings;
 import com.amap.api.maps.model.BitmapDescriptorFactory;
+import com.amap.api.maps.model.CameraPosition;
 import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.services.core.PoiItem;
 import com.example.parking.R;
+import com.example.parking.application.MyApplication;
+import com.example.parking.query.model.SearchResult;
+import com.example.parking.utils.SPUtils;
 
 /**
  * Class description goes here.
@@ -39,6 +43,7 @@ public class MapManager implements LocationSource, AMapLocationListener, AMap.On
     private MarkerOptions markerOption;
     //是否开启了缩放级别，
     private boolean hasSetZoom;
+    private boolean isFirst = true;
 
     public MapManager(Context context, AMap aMap) {
         this.mContext = context;
@@ -107,6 +112,29 @@ public class MapManager implements LocationSource, AMapLocationListener, AMap.On
         }
     }
 
+    public void clearAndAddMarker(SearchResult searchResult) {
+        if (searchResult != null) {
+            clearAllMarker();
+            //显示定位小蓝点
+            isFirst = true;
+            LatLng latLng = new LatLng(searchResult.getLatLonPoint().getLatitude(), searchResult.getLatLonPoint().getLongitude());
+//            移动地图到指定位置，故障位置
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(new CameraPosition(
+                    latLng,//新的中心点坐标
+                    13, //新的缩放级别
+                    0, //俯仰角0°~45°（垂直与地图时为0）
+                    0  ////偏航角 0~360° (正北方为0)
+            )));
+            markerOption = new MarkerOptions().icon(BitmapDescriptorFactory
+                    .fromBitmap(BitmapFactory
+                            .decodeResource(mContext.getResources(), R.drawable.home_weixiu_red)))
+                    .position(latLng).title(searchResult.getAddress())
+                    .draggable(false);
+            Marker marker = mMap.addMarker(markerOption);
+            marker.showInfoWindow();
+        }
+    }
+
     public void clearAllMarker() {
         if (mMap != null) {
             mMap.clear();
@@ -162,9 +190,14 @@ public class MapManager implements LocationSource, AMapLocationListener, AMap.On
     @Override
     public void onLocationChanged(AMapLocation amapLocation) {
         if (mListener != null && amapLocation != null) {
+
+            SPUtils.setSharedStringData(MyApplication.getAppContext(), SPUtils.CITY_CODE, amapLocation.getCity());
             if (amapLocation != null
                     && amapLocation.getErrorCode() == 0) {
-                mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
+                if (isFirst) {
+                    isFirst = false;
+                    mListener.onLocationChanged(amapLocation);// 显示系统小蓝点
+                }
                 Log.d(TAG, "定位成功");
                 if (onMapListener != null) {
                     onMapListener.mapLocationChanged(amapLocation);
@@ -183,6 +216,7 @@ public class MapManager implements LocationSource, AMapLocationListener, AMap.On
     /**
      * 销毁对象
      */
+
     public void onDestroy() {
         if (null != mlocationClient) {
             mlocationClient.onDestroy();

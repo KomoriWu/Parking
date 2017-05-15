@@ -1,5 +1,8 @@
 package com.example.parking.utils;
 
+import android.content.Context;
+import android.content.Intent;
+import android.Manifest;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +14,9 @@ import android.view.View;
 
 import com.amap.api.navi.model.NaviLatLng;
 import com.example.parking.R;
+import com.example.parking.add.navi.NavigationActivity;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import com.example.parking.add.navi.NavigationActivity;
 
@@ -47,7 +53,6 @@ public class Utils {
                 }).show();
     }
 
-
     //显示导航Activity
     public static void showNaviActivity(Context context, NaviLatLng startLatlng, NaviLatLng endLatlng) {
         Intent intent = new Intent(context, NavigationActivity.class);
@@ -79,6 +84,7 @@ public class Utils {
                 .cacheOnDisc()
                 .build();
     }
+
 
     public static String getPhoneNumber() {
         StringBuffer stringBuffer = new StringBuffer();
