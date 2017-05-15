@@ -55,6 +55,7 @@
     <string name="reserve_success">预定成功，半小时之后开始计费。</string>
     <string name="hint_search">请输入要搜索的地址</string>
     <string name="tip_query_failed">查询失败</string>
+    <string name="safety_exit_hint">确认退出登录？</string>
 
 
 </resources>

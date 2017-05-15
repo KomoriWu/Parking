@@ -31,6 +31,7 @@ import android.widget.TextView;
 import com.example.parking.R;
 import com.example.parking.base.BaseActivity;
 import com.example.parking.bean.User;
+import com.example.parking.utils.SharedPreferenceUtils;
 import com.example.parking.utils.Utils;
 
 import java.util.ArrayList;
@@ -356,6 +357,7 @@ public class LoginActivity extends BaseActivity implements LoaderCallbacks<Curso
                 Intent intent = getIntent();
                 intent.putExtra(Utils.ACCOUNT, mEmail);
                 setResult(RESULT_OK, intent);
+                SharedPreferenceUtils.saveUserAccount(LoginActivity.this, mEmail);
                 finish();
             } else {
                 mPasswordView.setError(getString(R.string.error_incorrect_password));

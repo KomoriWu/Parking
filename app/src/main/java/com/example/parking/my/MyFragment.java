@@ -1,7 +1,10 @@
 package com.example.parking.my;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,8 @@ import android.widget.TextView;
 import com.example.parking.R;
 import com.example.parking.application.MyApplication;
 import com.example.parking.base.BaseFragment;
+import com.example.parking.utils.AlertUtils;
+import com.example.parking.utils.SharedPreferenceUtils;
 import com.example.parking.utils.Utils;
 import com.example.parking.widget.ItemLayout;
 
@@ -35,6 +40,7 @@ public class MyFragment extends BaseFragment {
     TextView tvAccount;
     @BindView(R.id.item_safety_exit)
     ItemLayout itemSafetyExit;
+    private String mUserAccount;
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,18 +48,37 @@ public class MyFragment extends BaseFragment {
         ButterKnife.bind(this, view);
         MyApplication.getImageLoader(getActivity()).displayImage("",
                 ivHead, Utils.getImageOptions(R.mipmap.park, 360));
+        mUserAccount = SharedPreferenceUtils.getUserAccount(getActivity());
+        if (!TextUtils.isEmpty(mUserAccount)) {
+            tvAccount.setText(mUserAccount);
+        }
+
+        itemSafetyExit.setOnItemListener(new ItemLayout.OnItemListener() {
+            @Override
+            public void onClickItemListener(View v) {
+                AlertUtils.showAlertDialog(getActivity(), R.string.safety_exit_hint,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                SharedPreferenceUtils.clearUserAccount(getActivity());
+                                tvAccount.setText(getResources().getString(R.string.to_login));
+                                mUserAccount = null;
+                            }
+                        });
+            }
+        });
         return view;
     }
 
 
-    @OnClick({R.id.tv_account, R.id.item_safety_exit})
+    @OnClick({R.id.tv_account})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_account:
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivityForResult(intent, REQUEST_CODE);
-                break;
-            case R.id.item_safety_exit:
+                if (TextUtils.isEmpty(mUserAccount)) {
+                    Intent intent = new Intent(getActivity(), LoginActivity.class);
+                    startActivityForResult(intent, REQUEST_CODE);
+                }
                 break;
         }
     }
