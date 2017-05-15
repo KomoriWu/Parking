@@ -34,22 +34,25 @@
                 android:text="name" />
 
             <LinearLayout
+                android:id="@+id/layout_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_name"
-                android:id="@+id/layout_price"
                 android:layout_marginTop="@dimen/min_margin"
                 android:orientation="horizontal">
+
                 <TextView
                     style="@style/main_tv"
                     android:text="¥"
                     android:textSize="@dimen/text_size" />
+
                 <TextView
-                    style="@style/main_tv"
                     android:id="@+id/tv_price"
+                    style="@style/main_tv"
                     android:layout_marginLeft="3dp"
                     android:textColor="@android:color/holo_red_light"
                     android:textSize="@dimen/text_size" />
+
                 <TextView
                     style="@style/main_tv"
                     android:layout_marginLeft="3dp"
@@ -68,6 +71,13 @@
 
 
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_distance"
+            style="@style/main_tv"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/min_margin"
+            android:layout_toLeftOf="@+id/iv_right" />
 
         <ImageView
             android:id="@+id/iv_right"

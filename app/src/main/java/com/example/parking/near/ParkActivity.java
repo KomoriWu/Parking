@@ -103,6 +103,7 @@ public class ParkActivity extends BaseActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Utils.showSnackBar(layout, getResources().getString(R.string.
                                 reserve_success));
+                        
                         dialog.dismiss();
                     }
                 }

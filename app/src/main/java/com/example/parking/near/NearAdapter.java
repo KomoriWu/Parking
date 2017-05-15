@@ -69,6 +69,7 @@ public class NearAdapter extends RecyclerView.Adapter<NearAdapter.ParkViewHolder
         holder.tvName.setText(parking.getName());
         holder.tvPrice.setText(parking.getPrice()+"");
         holder.tvAddress.setText(parking.getAddress());
+        holder.tvDistance.setText(parking.getDistance()/1000+"km");
         MyApplication.getImageLoader(mContext).displayImage(parking.getImgUrl(),
                 holder.ivHead, Utils.getImageOptions(R.mipmap.park, 360));
 
@@ -87,6 +88,8 @@ public class NearAdapter extends RecyclerView.Adapter<NearAdapter.ParkViewHolder
         TextView tvPrice;
         @BindView(R.id.tv_address)
         TextView tvAddress;
+        @BindView(R.id.tv_distance)
+        TextView tvDistance;
         @BindView(R.id.iv_head)
         ImageView ivHead;
         @BindView(R.id.layout_park_item)
