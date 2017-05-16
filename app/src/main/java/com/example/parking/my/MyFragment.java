@@ -40,6 +40,8 @@ public class MyFragment extends BaseFragment {
     TextView tvAccount;
     @BindView(R.id.item_safety_exit)
     ItemLayout itemSafetyExit;
+    @BindView(R.id.item_my_order)
+    ItemLayout itemMyOrder;
     private String mUserAccount;
 
     @Override
@@ -65,6 +67,13 @@ public class MyFragment extends BaseFragment {
                                 mUserAccount = null;
                             }
                         });
+            }
+        });
+
+        itemMyOrder.setOnItemListener(new ItemLayout.OnItemListener() {
+            @Override
+            public void onClickItemListener(View v) {
+                startActivity(new Intent(getActivity(), OrderActivity.class));
             }
         });
         return view;

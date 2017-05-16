@@ -3,6 +3,7 @@ package com.example.parking.near;
 import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,8 +13,12 @@ import android.widget.TextView;
 import com.example.parking.R;
 import com.example.parking.application.MyApplication;
 import com.example.parking.base.BaseActivity;
+import com.example.parking.bean.ParkOrder;
 import com.example.parking.bean.Parking;
+import com.example.parking.utils.SharedPreferenceUtils;
 import com.example.parking.utils.Utils;
+
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,6 +41,7 @@ public class ParkActivity extends BaseActivity {
     RelativeLayout layout;
     private Parking mParking;
     private int mCount = 1;
+    private String mUserAccount;
 
     @Override
     public void init() {
@@ -46,7 +52,7 @@ public class ParkActivity extends BaseActivity {
         initToolbar();
         tvTitle.setText(mParking.getName());
         initData();
-
+        mUserAccount = SharedPreferenceUtils.getUserAccount(this);
     }
 
     private void initData() {
@@ -65,49 +71,62 @@ public class ParkActivity extends BaseActivity {
 
     @OnClick(R.id.fab_reserve)
     public void onViewClicked() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View view = LayoutInflater.from(this).inflate(R.layout.reserve_dialog, null);
-        final TextView tvCount = (TextView) view.findViewById(R.id.tv_count);
-        FloatingActionButton fabDecrease = (FloatingActionButton) view.findViewById(R.id.fab_decrease);
-        FloatingActionButton fabAdd = (FloatingActionButton) view.findViewById(R.id.fab_add);
+        if (TextUtils.isEmpty(mUserAccount)) {
+            Utils.showSnackBar(layout, getResources().getString(R.string.
+                    login_hint));
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            View view = LayoutInflater.from(this).inflate(R.layout.reserve_dialog, null);
+            final TextView tvCount = (TextView) view.findViewById(R.id.tv_count);
+            FloatingActionButton fabDecrease = (FloatingActionButton) view.findViewById(R.id.fab_decrease);
+            FloatingActionButton fabAdd = (FloatingActionButton) view.findViewById(R.id.fab_add);
 
-        tvCount.setText(mCount + "");
-        fabDecrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mCount > 1) {
-                    mCount -= 1;
-                    tvCount.setText(mCount + "");
-                }
-            }
-        });
-        fabAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mCount < 10) {
-                    mCount += 1;
-                    tvCount.setText(mCount + "");
-                }
-            }
-        });
-        builder.setView(view);
-        builder.setTitle(getResources().getString(R.string.confirm_reserve));
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Utils.showSnackBar(layout, getResources().getString(R.string.
-                                reserve_success));
-                        
-                        dialog.dismiss();
+            tvCount.setText(mCount + "");
+            fabDecrease.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mCount > 1) {
+                        mCount -= 1;
+                        tvCount.setText(mCount + "");
                     }
                 }
-        );
-        builder.create().show();
+            });
+            fabAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mCount < 10) {
+                        mCount += 1;
+                        tvCount.setText(mCount + "");
+                    }
+                }
+            });
+            builder.setView(view);
+            builder.setTitle(getResources().getString(R.string.confirm_reserve));
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            builder.setPositiveButton(R.string.confirm, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Utils.showSnackBar(layout, getResources().getString(R.string.
+                                    reserve_success));
+                            Calendar c = Calendar.getInstance();
+                            int hour = c.get(Calendar.HOUR_OF_DAY);
+                            int minute = c.get(Calendar.MINUTE);
+                            ParkOrder parkOrder = new ParkOrder(mUserAccount,mParking.getName(),
+                                    mParking.getAddress(), mParking.getPrice(),
+                                    Integer.parseInt(tvCount.getText().toString()),
+                                    hour * 60 + minute,mParking.getImgUrl());
+                            parkOrder.save();
+                            dialog.dismiss();
+                        }
+                    }
+            );
+            builder.create().show();
+        }
     }
 }

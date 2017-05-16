@@ -23,6 +23,8 @@ import com.example.parking.add.navi.NavigationActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
+import java.util.Calendar;
+
 
 /**
  * Created by KomoriWu
@@ -94,6 +96,35 @@ public class Utils {
         }
         return "1" + stringBuffer.toString();
 
+    }
+
+    public static String getTime(int time) {
+        int hour = time / 60;
+        int minutes = time - time / 60 * 60;
+        String hourStr, minuterStr;
+        if (hour < 10) {
+            hourStr = "0" + hour;
+        } else {
+            hourStr = hour + "";
+        }
+        if (minutes < 10) {
+            minuterStr = "0" + minutes;
+        } else {
+            minuterStr = minutes + "";
+        }
+        return hourStr + ":" + minuterStr;
+    }
+
+    public static int getCountPrice(int count, int price, int time) {
+        Calendar c = Calendar.getInstance();
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+        int timeValue = hour * 60 + minute - time;
+        if (timeValue < 30) {
+            return (int) (count * price * 0.5);
+        } else {
+            return timeValue / 60 * count * price + (int) (count * price * 0.5);
+        }
     }
 
     public static String getParkImaUrl(int position) {

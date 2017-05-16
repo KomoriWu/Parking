@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_park_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_item_list_effect">
+
+    <RelativeLayout
+        android:id="@+id/layout_top"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/park_item_height"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/iv_head"
+            android:layout_width="@dimen/my_iv_head"
+            android:layout_height="@dimen/my_iv_head"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:src="@mipmap/ic_launcher" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_toLeftOf="@+id/btn_pay"
+            android:layout_toRightOf="@+id/iv_head"
+            android:gravity="center|left">
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/main_tv"
+                android:text="name" />
+
+            <TextView
+                android:id="@+id/tv_count_price"
+                style="@style/main_tv"
+                android:layout_below="@+id/tv_name"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="@dimen/min_margin"
+                android:textColor="@android:color/holo_red_light"
+                android:textSize="@dimen/text_size" />
+
+            <TextView
+                android:id="@+id/tv_order_time"
+                style="@style/main_tv"
+                android:layout_below="@+id/tv_count_price"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="@dimen/min_margin"
+                android:textSize="@dimen/text_size" />
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/btn_pay"
+            android:layout_width="@dimen/item_height"
+            android:layout_height="@dimen/divide_padding_right"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="@drawable/ripple_btn_effect"
+            android:text="@string/pay"
+            android:textColor="@color/white"
+            android:textSize="@dimen/mini_text_size" />
+    </RelativeLayout>
+
+    <View
+        style="@style/view_line"
+        android:layout_below="@+id/layout_top"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin" />
+</RelativeLayout>

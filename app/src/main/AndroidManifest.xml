@@ -35,7 +35,7 @@
             android:value="parking.db" />
         <meta-data
             android:name="VERSION"
-            android:value="1" />
+            android:value="4" />
         <meta-data
             android:name="QUERY_LOG"
             android:value="false" />
@@ -71,6 +71,7 @@
             android:name=".my.RegisterActivity"
             android:configChanges="orientation|keyboardHidden"
             android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity android:name=".my.OrderActivity"></activity>
     </application>
 
 </manifest>

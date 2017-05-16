@@ -116,4 +116,8 @@ public class Parking extends SugarRecord implements Serializable {
                         " LIMIT " + index + "," + size + "");
         return parkingList;
     }
+
+    public static List<Parking> getParkingList(String address) {
+        return Parking.find(Parking.class, "address = ?", address);
+    }
 }
