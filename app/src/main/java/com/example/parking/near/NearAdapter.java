@@ -14,6 +14,7 @@ import com.example.parking.application.MyApplication;
 import com.example.parking.bean.Parking;
 import com.example.parking.utils.Utils;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +70,8 @@ public class NearAdapter extends RecyclerView.Adapter<NearAdapter.ParkViewHolder
         holder.tvName.setText(parking.getName());
         holder.tvPrice.setText(parking.getPrice()+"");
         holder.tvAddress.setText(parking.getAddress());
-        holder.tvDistance.setText(parking.getDistance()/1000+"km");
+        holder.tvDistance.setText(new DecimalFormat("0.000").format(parking.getDistance()*0.001)
+                +"km");
         MyApplication.getImageLoader(mContext).displayImage(parking.getImgUrl(),
                 holder.ivHead, Utils.getImageOptions(R.mipmap.park, 360));
 
