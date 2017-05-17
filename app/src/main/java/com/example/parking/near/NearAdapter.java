@@ -38,10 +38,10 @@ public class NearAdapter extends RecyclerView.Adapter<NearAdapter.ParkViewHolder
         mParkingList = new ArrayList<>();
     }
 
-//    public void setParkList(List<Parking> mParkingList) {
-//        this.mParkingList = mParkingList;
-//        notifyDataSetChanged();
-//    }
+    public void setParkList(List<Parking> mParkingList) {
+        this.mParkingList = mParkingList;
+        notifyDataSetChanged();
+    }
 
     public void addParkList(List<Parking> parkingList, boolean isClearList) {
         if (parkingList != null) {

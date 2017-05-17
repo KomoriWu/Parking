@@ -7,9 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.parking.R;
 import com.example.parking.base.BaseFragment;
@@ -22,6 +24,8 @@ import com.example.parking.refresh.SwipeRefreshLayoutDirection;
 import com.example.parking.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
@@ -86,6 +90,32 @@ public class NearFragment extends BaseFragment implements NearView, NearAdapter.
         spinnerDefault.setAdapter(defaultsAdapter);
         spinnerDistance.setAdapter(distanceAdapter);
         spinnerPrice.setAdapter(pricesAdapter);
+        spinnerPrice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 1) {
+                    Collections.sort(mParkingList, new Comparator<Parking>() {
+                        @Override
+                        public int compare(Parking p1, Parking p2) {
+                            if (p1.getPrice() > p2.getPrice()) {
+                                return 1;
+                            }
+                            if (p1.getPrice() > p2.getPrice()) {
+                                return 0;
+                            }
+                            return -1;
+                        }
+                    });
+                    mNearAdapter.setParkList(mParkingList);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
 
     private void initRecycleView() {
