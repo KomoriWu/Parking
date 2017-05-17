@@ -40,6 +40,7 @@ public class Utils {
     public static final String TEXT_POI_TYPE = "交通设施服务";
     public static final int POI_SEARCH_BOUND = 10000;
 
+
     public static final int POI_SEARCH_COUNT = 30;
     //讯飞语音
     public static final String XUN_FEI_APP_ID = "57d0dad1";

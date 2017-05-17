@@ -7,6 +7,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.orm.SugarApp;
 
+import c.b.BP;
+
 /**
  * Created by KomoriWu
  * on 2017-04-18.
@@ -15,11 +17,12 @@ import com.orm.SugarApp;
 public class MyApplication extends SugarApp {
     private static ImageLoader mImageLoader;
     private static Application sInstance;
-
+    public static final String APP_PAY_ID = "d2545b0db7cf58434db4802ee16fa95e";
     @Override
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+        BP.init(APP_PAY_ID);
     }
 
     public static ImageLoader getImageLoader(Context context) {

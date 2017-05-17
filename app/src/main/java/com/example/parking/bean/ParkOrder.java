@@ -26,9 +26,11 @@ public class ParkOrder extends SugarRecord implements Serializable {
     private int orderTime;
     @SerializedName("imgUrl")
     private String imgUrl;
+    @SerializedName("isPay")
+    private boolean isPay;
+
     public ParkOrder() {
     }
-
 
     public ParkOrder(String userAccount, String name, String address, int price, int count,
                      int orderTime, String imgUrl) {
@@ -39,7 +41,17 @@ public class ParkOrder extends SugarRecord implements Serializable {
         this.count = count;
         this.orderTime = orderTime;
         this.imgUrl = imgUrl;
+        this.isPay = false;
     }
+
+    public boolean isPay() {
+        return isPay;
+    }
+
+    public void setPay(boolean pay) {
+        isPay = pay;
+    }
+
 
     public String getName() {
         return name;
@@ -89,11 +101,16 @@ public class ParkOrder extends SugarRecord implements Serializable {
     public void setOrderTime(int orderTime) {
         this.orderTime = orderTime;
     }
+
     public int getCount() {
         return count;
     }
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public static void deleteOrderByName(String name) {
+        ParkOrder.deleteAll(ParkOrder.class, "name = ?", name);
     }
 }

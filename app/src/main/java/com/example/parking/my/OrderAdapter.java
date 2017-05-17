@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.parking.R;
 import com.example.parking.application.MyApplication;
@@ -21,6 +22,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import c.b.BP;
+import c.b.PListener;
 
 /**
  * Created by KomoriWu
@@ -32,11 +35,21 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ParkViewHold
     private Context mContext;
     private List<ParkOrder> mParkOrderList;
     private OnItemClickListener mOnItemClickListener;
+    private OnInterfaceProgressDialog mOnInterfaceProgressDialog;
 
-    public OrderAdapter(Context mContext, OnItemClickListener mOnItemClickListener) {
+    public interface OnInterfaceProgressDialog {
+        void showInterfaceProgressDialog();
+
+        void hideInterfaceProgressDialog();
+    }
+
+
+    public OrderAdapter(Context mContext, OnItemClickListener mOnItemClickListener,
+                        OnInterfaceProgressDialog mOnInterfaceProgressDialog) {
         this.mContext = mContext;
         this.mOnItemClickListener = mOnItemClickListener;
         mParkOrderList = new ArrayList<>();
+        this.mOnInterfaceProgressDialog = mOnInterfaceProgressDialog;
     }
 
 
@@ -44,6 +57,17 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ParkViewHold
         this.mParkOrderList = parkOrderList;
         notifyDataSetChanged();
     }
+
+    public void deleteOrder(String name) {
+        ParkOrder.deleteOrderByName(name);
+        for (int i = 0; i < mParkOrderList.size(); i++) {
+            if (mParkOrderList.get(i).getName().equals(name)) {
+                mParkOrderList.remove(i);
+                notifyDataSetChanged();
+            }
+        }
+    }
+
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
@@ -57,8 +81,8 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ParkViewHold
     }
 
     @Override
-    public void onBindViewHolder(ParkViewHolder holder, int position) {
-        ParkOrder parkOrder = mParkOrderList.get(position);
+    public void onBindViewHolder(final ParkViewHolder holder, int position) {
+        final ParkOrder parkOrder = mParkOrderList.get(position);
         holder.tvName.setText(parkOrder.getName());
         holder.tvOrderTime.setText(mContext.getString(R.string.order_time)
                 + Utils.getTime(parkOrder.getOrderTime()));
@@ -66,6 +90,48 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ParkViewHold
                 getPrice(), parkOrder.getOrderTime()));
         MyApplication.getImageLoader(mContext).displayImage(parkOrder.getImgUrl(),
                 holder.ivHead, Utils.getImageOptions(R.mipmap.park, 360));
+        holder.btnPay.setText(parkOrder.isPay() ? mContext.getResources().getString(
+                R.string.pay_success) : mContext.getResources().getString(R.string.pay));
+        if (!parkOrder.isPay()) {
+            holder.btnPay.setBackground(mContext.getResources().getDrawable(R.drawable.
+                    ripple_btn_effect));
+        } else {
+            holder.btnPay.setBackgroundColor(mContext.getResources().getColor(R.color.medium_gray));
+        }
+
+        holder.btnPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!parkOrder.isPay()) {
+                    mOnInterfaceProgressDialog.showInterfaceProgressDialog();
+                    BP.pay("停车费用", parkOrder.getName(), 0.01, true, new PListener() {
+                        @Override
+                        public void orderId(String s) {
+                            mOnInterfaceProgressDialog.hideInterfaceProgressDialog();
+                        }
+
+                        @Override
+                        public void succeed() {
+                            parkOrder.setPay(true);
+                            parkOrder.save();
+                            notifyDataSetChanged();
+
+                            Toast.makeText(mContext, "支付成功！", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void fail(int i, String s) {
+                            Toast.makeText(mContext, s, Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void unknow() {
+                        }
+                    });
+                }
+            }
+        });
+
 
     }
 
@@ -74,8 +140,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ParkViewHold
         return mParkOrderList == null ? 0 : mParkOrderList.size();
     }
 
-    public class ParkViewHolder extends RecyclerView.ViewHolder implements View.
-            OnClickListener {
+    public class ParkViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
         @BindView(R.id.tv_name)
         TextView tvName;
         @BindView(R.id.tv_count_price)
@@ -92,14 +157,16 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ParkViewHold
         public ParkViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            layoutParkItem.setOnClickListener(this);
+            layoutParkItem.setOnLongClickListener(this);
         }
 
+
         @Override
-        public void onClick(View view) {
+        public boolean onLongClick(View view) {
             if (mOnItemClickListener != null) {
                 mOnItemClickListener.onItemClick(view, getPosition());
             }
+            return false;
         }
     }
 }

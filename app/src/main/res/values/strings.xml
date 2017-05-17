@@ -21,6 +21,7 @@
     <string name="wallet">钱包</string>
     <string name="about_us">关于我们</string>
     <string name="pay">支付</string>
+    <string name="pay_success">已支付</string>
     <string name="forgot_password">忘记密码?</string>
     <string name="safety_exit">安全退出</string>
     <string name="exit_program_hint">再按一次返回键退出</string>
@@ -59,6 +60,9 @@
     <string name="safety_exit_hint">确认退出登录？</string>
     <string name="login_hint">您还未登录，请前往登录？</string>
     <string name="order_time">订单时间：</string>
+    <string name="delete_order_hint">您要删除此订单吗？</string>
+    <string name="delete_order_success">删除订单成功！</string>
+    <string name="make_order">正在提交订单</string>
 
 
 </resources>
